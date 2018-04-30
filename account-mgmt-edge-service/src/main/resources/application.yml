@@ -1,0 +1,46 @@
+zuul:
+  prefix: /api
+  routes:
+    account-service:
+#      path: http://localhost:8082
+      path: /account-service/**
+      service-id: account-service
+      sensitive-headers:
+      - Cookie
+      - Set-Cookie
+    submission-service:
+      path: /submission-service
+      service-id: submission-service
+      sensitive-headers:
+      - Cookie
+      - Set-Cookie
+
+server:
+  port: 8087
+#setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.acc.cloud.ms: DEBUG
+    
+#Eureka Server  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka/
+      register-with-eureka: true 
+      
+spring:
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    base-url: http://distributed-tracing-server/
+    locator:
+      discovery:
+        enabled: true
+    sender:
+      type: web

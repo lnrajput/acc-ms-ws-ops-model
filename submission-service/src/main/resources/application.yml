@@ -1,0 +1,34 @@
+server:
+  port: 8081
+#setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.acc.cloud.ms: DEBUG
+    
+#Eureka Server
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/account_mgmt?useSSL=false
+    username: root
+    password: root
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    base-url: http://distributed-tracing-server/
+    locator:
+      discovery:
+        enabled: true
+    sender:
+      type: web    
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka/
+      register-with-eureka: true     
