@@ -1,5 +1,9 @@
 package com.acc.cloud.ms.repository;
 
-public interface SubmissionRepository {//extends CrudRepository<Submission, Long> {
+import org.springframework.data.repository.CrudRepository;
+
+import com.acc.cloud.ms.domain.Submission;
+
+public interface SubmissionRepository extends CrudRepository<Submission, Long> {
 
 }

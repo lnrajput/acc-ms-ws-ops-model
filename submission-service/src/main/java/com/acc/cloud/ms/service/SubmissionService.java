@@ -18,8 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class SubmissionService implements ISubmissionService{
 	
-//	@Autowired
-//	private SubmissionRepository submissionRepository;
+	@Autowired
+	private SubmissionRepository submissionRepository;
 	
 	private List<Submission> submissions = new ArrayList<>(Arrays.asList(new Submission(1001L, new Date(), "Walmart", "860-944-8845", "6 Buttrick Court", "LutherVille Timonium", "MD", "21093", "Aggri Business", "Auto", "1234-34-352"), new Submission(1002L, new Date(), "Target", "860-944-8825", "4 Buttrick Court", "LutherVille Timonium", "MD", "21093", "Aggri Business", "CMP", "1234-34-322")));	
 
