@@ -1,21 +1,21 @@
 server:
   port: 9411
 
-spring:
-  datasource:
-    schema: classpath:/mysql.sql
-    url: jdbc:mysql://localhost:3306/zipkin?autoReconnect=true&useSSL=false
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
-    initialize: true
-    continue-on-error: true
-  sleuth:
-    enabled: false
-
-zipkin:
-  storage:
-      type: mysql
+#spring:
+#  datasource:
+#    schema: classpath:/mysql.sql
+#    url: jdbc:mysql://localhost:3306/zipkin?autoReconnect=true&useSSL=false
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.jdbc.Driver
+#    initialize: true
+#    continue-on-error: true
+#  sleuth:
+#    enabled: false
+#
+#zipkin:
+#  storage:
+#      type: mysql
 
 
 eureka:
@@ -30,5 +30,5 @@ logging:
     com.netflix: WARN
     org.springframework.web: WARN
     com.acc.cloud.ms: DEBUG
-    org.springframework.cloud.sleuth.instrument.messaging.MessagingSpanExtractor: ERROR
-    org.springframework.cloud.sleuth.util.ExceptionUtils: ERROR
+#    org.springframework.cloud.sleuth.instrument.messaging.MessagingSpanExtractor: ERROR
+#    org.springframework.cloud.sleuth.util.ExceptionUtils: ERROR

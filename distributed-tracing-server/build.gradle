@@ -1,7 +1,6 @@
 buildscript {
 	ext {
-		//springBootVersion = '2.0.1.RELEASE'
-		springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '1.5.12.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -14,7 +13,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.acc.cloud.ms'
 version = '1.0.0-SNAPSHOT'
@@ -22,33 +20,24 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-	maven { url "https://repo.spring.io/milestone" }
 }
 
 
 ext {
-	//springCloudVersion = 'Finchley.M9'
-	springCloudVersion = 'Edgware.SR3'	
+	springCloudVersion = 'Edgware.SR3'
 }
 
 dependencies {	
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
-	//compile('org.springframework.cloud:spring-cloud-starter-security')
-	compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+	//compile('org.springframework.cloud:spring-cloud-starter-config')
+	compile('org.springframework.cloud:spring-cloud-starter-eureka')	
+	//compile('org.springframework.cloud:spring-cloud-starter-sleuth')
 	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 	//compile('org.springframework.cloud:spring-cloud-stream')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	//testCompile('org.springframework.cloud:spring-cloud-stream-test-support')
-	compile('io.zipkin.java:zipkin-server:1.17.1')	
-	compile('io.zipkin.java:zipkin-autoconfigure-ui:1.17.1')
-	compile('io.zipkin.java:zipkin-autoconfigure-storage-mysql:1.17.1')
-	compile('mysql:mysql-connector-java')
-	compile('org.springframework.boot:spring-boot-starter-jdbc')
-	compile('io.springfox:springfox-swagger2:2.7.0')
-	compile('io.springfox:springfox-swagger-ui:2.7.0')		
-
+	compile('io.zipkin.java:zipkin-server')	
+	compile('io.zipkin.java:zipkin-autoconfigure-ui')	
 }
 
 dependencyManagement {
