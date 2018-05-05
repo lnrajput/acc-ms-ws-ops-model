@@ -32,15 +32,9 @@ eureka:
       register-with-eureka: true 
       
 spring:
+  zipkin:
+    base-url: http://localhost:9411/
   sleuth:
     enabled: true
     sampler:
-      probability: 1.0
-  zipkin:
-    enabled: true
-    base-url: http://distributed-tracing-server/
-    locator:
-      discovery:
-        enabled: true
-    sender:
-      type: web
+      probability: 1.0    
