@@ -1,0 +1,46 @@
+server:
+  port: 8888
+#Usecase-1
+#Spring cloud config server by defalut look for properties of git url in config folder,If you want to change it the set following properties
+
+#spring:
+#  profiles:
+#    active:
+#    - native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations:
+#          - classpath:/config 
+#          - classpath:/app1 
+#          - classpath:/app2
+
+#Usecase-2
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://laxminarayan.rajput@gitlab.apbg.apcf.io/laxminarayan.rajput/acc-ms-ws-config-repo.git
+          username: laxminarayan.rajput
+          password: workshop
+          search-paths:
+          - acc-ms-ws-config/account-service
+          - acc-ms-ws-config/submission-service
+          - acc-ms-ws-config/account-mgmt-edge-service
+          - acc-ms-ws-config/shared-config
+          force-pull: true
+        encrypt:
+          enabled: false
+  security:
+    user:
+      name: user
+      password: '{cipher}60c2d0867d40bad773764f53841f2ca5c39b4bb194f07c266ca9d086e7b4d0fa'
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+encrypt:
+  key: asdfsdf

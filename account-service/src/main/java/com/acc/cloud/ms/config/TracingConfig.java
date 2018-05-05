@@ -1,23 +1,15 @@
 package com.acc.cloud.ms.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.sleuth.zipkin2.ZipkinProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-
-import zipkin2.Span;
 
 @Configuration
 public class TracingConfig {
-/*	
-    @Autowired
+	
+/*    @Autowired
     private EurekaClient eurekaClient;
     @Autowired
     private SpanMetricReporter spanMetricReporter;
+    
     @Autowired
     private ZipkinProperties zipkinProperties;
     
@@ -40,6 +32,6 @@ public class TracingConfig {
                 }
             }
         };
-    }*/	
+    }	*/
 
 }

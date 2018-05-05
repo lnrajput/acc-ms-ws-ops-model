@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acc.cloud.ms.client.ISubmissionServiceFeignClient;
-import com.acc.cloud.ms.client.SubmissionRestClient;
+import com.acc.cloud.ms.configproperties.SubmissionWmqProperties;
 import com.acc.cloud.ms.model.Account;
 import com.acc.cloud.ms.model.SubmissionDetails;
 import com.acc.cloud.ms.repository.AccountRepository;
@@ -23,6 +23,9 @@ public class AccountService {
 	
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	private SubmissionWmqProperties submissionWmqProperties; 
 	
 //	@Autowired
 //	private SubmissionRestClient submissionRestClient;
@@ -45,7 +48,11 @@ public class AccountService {
 				accountModelList.add(accountModel);
 			}
 
-		}			
+		}
+		//Config Server Testing excercise
+		// 1.Use Properties Object
+		log.debug("Config Server Properties:::"+submissionWmqProperties.toString());
+		
 		return accountModelList;
 	}
 	

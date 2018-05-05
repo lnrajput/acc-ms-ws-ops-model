@@ -3,6 +3,7 @@ package com.acc.cloud.ms.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.acc.cloud.ms.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
+@RefreshScope
 public class AccountResource {
 
 	@Autowired

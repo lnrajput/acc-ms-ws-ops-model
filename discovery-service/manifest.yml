@@ -1,0 +1,8 @@
+---
+applications:
+- name: discovery-service
+  memory: 1024M
+  instances: 1
+  random-route: false
+  path: build/libs/discovery-service-1.0.0-SNAPSHOT.jar
+  host: discovery-service
