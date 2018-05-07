@@ -1,0 +1,18 @@
+package com.acc.cloud.ms.model;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Account {
+
+	private Long accountId;
+	private String accountName;
+	private List<SubmissionDetails> submissionDetailsList;
+
+}
