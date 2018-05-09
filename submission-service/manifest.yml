@@ -1,10 +1,10 @@
 ---
 applications:
-- name: discovery-service
+- name: submission-service
   memory: 1024M
   instances: 1
   random-route: false
-  path: build/libs/discovery-service-1.0.0-SNAPSHOT.jar
-  host: discovery-service
+  path: build/libs/submission-service-1.0.0-SNAPSHOT.jar
+  host: submission-service
   env:
     SPRING_PROFILES_ACTIVE: cloud 

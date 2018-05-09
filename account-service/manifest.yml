@@ -1,10 +1,10 @@
 ---
 applications:
-- name: discovery-service
+- name: account-service
   memory: 1024M
   instances: 1
   random-route: false
-  path: build/libs/discovery-service-1.0.0-SNAPSHOT.jar
-  host: discovery-service
+  path: build/libs/account-service-1.0.0-SNAPSHOT.jar
+  host: account-service
   env:
     SPRING_PROFILES_ACTIVE: cloud 

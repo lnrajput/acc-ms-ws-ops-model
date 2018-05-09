@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acc.cloud.ms.domain.Submission;
+import com.acc.cloud.ms.messaging.SubmissionMessageSource;
 import com.acc.cloud.ms.model.SubmissionDetails;
 import com.acc.cloud.ms.repository.SubmissionRepository;
 
@@ -20,6 +21,9 @@ public class SubmissionService implements ISubmissionService{
 	
 	@Autowired
 	private SubmissionRepository submissionRepository;
+	
+	@Autowired
+	private SubmissionMessageSource submissionMessageSource;
 	
 	private List<Submission> submissions = new ArrayList<>(Arrays.asList(new Submission(1001L, new Date(), "Walmart", "860-944-8845", "6 Buttrick Court", "LutherVille Timonium", "MD", "21093", "Aggri Business", "Auto", "1234-34-352"), new Submission(1002L, new Date(), "Target", "860-944-8825", "4 Buttrick Court", "LutherVille Timonium", "MD", "21093", "Aggri Business", "CMP", "1234-34-322")));	
 
@@ -61,6 +65,7 @@ public class SubmissionService implements ISubmissionService{
 			submissionDetails.setMarketSegment(submission.getMarketSegment());
 			submissionDetails.setLineOfInsurance(submission.getLineOfInsurance());
 			submissionDetails.setFeinNumber(submission.getFeinNumber());
+			submissionMessageSource.emitEvent(submissionDetails);
 		}
 		return submissionDetails;
 	}

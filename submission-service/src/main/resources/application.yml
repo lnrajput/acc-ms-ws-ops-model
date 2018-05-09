@@ -12,17 +12,54 @@ logging:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/account_mgmt?useSSL=false
+#    url: jdbc:mysql://10.0.4.22:3306/cf_ec2ff8d3_af1a_4e09_b245_f2cecfde0b17?user=5jXFlX4MpUAGeb2f&password=CBja3hRTbj1qpuHl
     username: root
     password: root
+#    username: 5jXFlX4MpUAGeb2f
+#    password: CBja3hRTbj1qpuHl    
   sleuth:
     enabled: true
     sampler:
       probability: 1.0
   zipkin:
     base-url: http://localhost:9411/
-    
+#    base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
+
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: submission-topic
+          binder: rabbitmq-binder
+          content-type: application/json
+      binders:
+        rabbitmq-binder:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+                
+#  cloud:
+#    stream:
+#      bindings:
+#        output:
+#          destination: submission-topic
+#      kafka:
+#        binder:
+#          brokers: localhost
+#          zkNodes: localhost
+#          defaultZkPort: 2181
+#          defaultBrokerPort: 9092                
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8765/eureka/
+#      defaultZone: https://discovery-service.apps.apbg.apcf.io/eureka/
       register-with-eureka: true
+      
+      

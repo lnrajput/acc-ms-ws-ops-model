@@ -1,0 +1,10 @@
+---
+applications:
+- name: account-mgmt-edge-service
+  memory: 1024M
+  instances: 1
+  random-route: false
+  path: build/libs/account-mgmt-edge-service-1.0.0-SNAPSHOT.jar
+  host: account-mgmt-edge-service
+  env:
+    SPRING_PROFILES_ACTIVE: cloud 

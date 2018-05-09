@@ -1,0 +1,10 @@
+---
+applications:
+- name: distributed-tracing-server
+  memory: 1024M
+  instances: 1
+  random-route: false
+  path: build/libs/distributed-tracing-server-1.0.0-SNAPSHOT.jar
+  host: distributed-tracing-server
+  env:
+    SPRING_PROFILES_ACTIVE: cloud 
