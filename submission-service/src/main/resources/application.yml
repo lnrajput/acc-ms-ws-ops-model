@@ -37,11 +37,12 @@ spring:
           environment:
             spring:
               rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
+                host: 10.0.4.45
+#                port: 5672
+#                username: guest
+                password: ub5pj4n3c7kfgodd50icj6vnm1
                 virtual-host: /
+                
                 
 #  cloud:
 #    stream:
