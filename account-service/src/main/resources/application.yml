@@ -1,0 +1,218 @@
+server:
+  port: 8082
+#setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.acc.cloud.ms: DEBUG
+    
+#Eureka Server
+
+spring:
+  profiles:
+    active:
+    - ${SPRING_PROFILES_ACTIVE}
+  datasource:
+    url: jdbc:mysql://10.0.4.22:3306/cf_ec2ff8d3_af1a_4e09_b245_f2cecfde0b17?user=5jXFlX4MpUAGeb2f&password=CBja3hRTbj1qpuHl
+    username: 5jXFlX4MpUAGeb2f
+    password: CBja3hRTbj1qpuHl 
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
+    
+  rabbitmq:
+    host: 10.0.4.45
+    password: usd684tr5oq9spndrah9ghalki
+    addresses: https://42e5404b-125c-4358-aa70-2aa113b71676:usd684tr5oq9spndrah9ghalki@pivotal-rabbitmq.sys.apbg.apcf.io/api/
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: submission-topic
+          group: submission-group
+          binder: rabbitmq-binder
+          content-type: application/json
+      binders:
+        rabbitmq-binder:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 10.0.4.45
+                password: usd684tr5oq9spndrah9ghalki
+                virtual-host: /
+
+#  cloud:
+#    stream:
+#      bindings:
+#        input:
+#          destination: submission-topic
+#          group: submission-group
+#      kafka:
+#        binder:
+#          brokers: localhost
+#          zkNodes: localhost
+#          defaultZkPort: 2181
+#          defaultBrokerPort: 9092
+                
+             
+eureka:
+  client:
+    service-url:
+      defaultZone: https://discovery-service.apps.apbg.apcf.io/eureka/
+      register-with-eureka: true
+
+#method=POST, URL=http://localhost:8082/actuator/refresh      
+jms:
+  queue:
+    queueManager: QCTA
+    name: submissionConnectionFactory
+    host: 124.321.123.432
+    port: 1414
+    channel: submissionChannel
+    password: '{cipher}ee707455b439380639a6123d79d7f728086f5bbf13a970649b4938bf9b4f76db1ffedc55a1b44ff71e1fbee7b692cf75'
+    password: submissionPass
+    inboundQueueName: submission
+    transportType: 1
+    queueName: submissionQueueConfigTest2
+    
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        
+ribbon:
+  eureka:
+    enabled: true
+    ReadTimeout: 20000
+    ConnectTimeout: 20000
+    
+# To disable Hystrix in Feign
+feign:
+  hystrix:
+    enabled: true
+
+# To set thread isolation to SEMAPHORE
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+---
+server:
+  port: 8082
+#setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.acc.cloud.ms: DEBUG
+    
+#Eureka Server
+
+spring:
+  profiles:
+    active:
+    - local
+  datasource:
+    url: jdbc:mysql://localhost:3306/account_mgmt?useSSL=false
+    username: root
+    password: root
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
+    
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: submission-topic
+          group: submission-group
+          binder: rabbitmq-binder
+          content-type: application/json
+      binders:
+        rabbitmq-binder:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+
+#  cloud:
+#    stream:
+#      bindings:
+#        input:
+#          destination: submission-topic
+#          group: submission-group
+#      kafka:
+#        binder:
+#          brokers: localhost
+#          zkNodes: localhost
+#          defaultZkPort: 2181
+#          defaultBrokerPort: 9092
+                
+             
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka/
+      register-with-eureka: true
+
+#method=POST, URL=http://localhost:8082/actuator/refresh      
+jms:
+  queue:
+    queueManager: QCTA
+    name: submissionConnectionFactory
+    host: 124.321.123.432
+    port: 1414
+    channel: submissionChannel
+    username: submissionUser    
+#    password: '{cipher}ee707455b439380639a6123d79d7f728086f5bbf13a970649b4938bf9b4f76db1ffedc55a1b44ff71e1fbee7b692cf75'
+    password: submissionPass
+    inboundQueueName: submission
+    transportType: 1
+    queueName: submissionQueueConfigTest2    
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        
+ribbon:
+  eureka:
+    enabled: true
+    ReadTimeout: 20000
+    ConnectTimeout: 20000
+    
+# To disable Hystrix in Feign
+feign:
+  hystrix:
+    enabled: true
+
+# To set thread isolation to SEMAPHORE
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE

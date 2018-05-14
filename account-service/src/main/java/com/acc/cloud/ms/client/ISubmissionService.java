@@ -14,13 +14,13 @@ public interface ISubmissionService {
 	
 	@RequestMapping("/submissions")
 	public @ResponseBody List<SubmissionDetails> getAllSubmissions();	
-	@RequestMapping("/submissions/{submissionId}")
+/*	@RequestMapping("/submissions/{submissionId}")
 	public @ResponseBody SubmissionDetails getSubmission(@PathVariable("submissionId")Long submissionId);	
 	@RequestMapping(method=RequestMethod.POST, value="/submissions")
 	public void createSubmission(@RequestBody SubmissionDetails submissionDetails);	
 	@RequestMapping(method=RequestMethod.PUT, value="submissions/{submissionId}")
 	public void updateSubmission(@RequestBody SubmissionDetails submissionDetails, @PathVariable("submissionId") Long submissionId);	
 	@RequestMapping(method=RequestMethod.DELETE, value="/submissions/{submissionId}")
-	public void deleteSubmission(@PathVariable("submissionId") Long submissionId);
+	public void deleteSubmission(@PathVariable("submissionId") Long submissionId);*/
 
 }

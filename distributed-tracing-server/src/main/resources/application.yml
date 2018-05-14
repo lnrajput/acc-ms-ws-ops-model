@@ -22,7 +22,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8765/eureka/
-      register-with-eureka: true 
+#      defaultZone: https://discovery-service.apps.apbg.apcf.io/eureka/
+      register-with-eureka: true       
   
 #setting logging levels
 logging:

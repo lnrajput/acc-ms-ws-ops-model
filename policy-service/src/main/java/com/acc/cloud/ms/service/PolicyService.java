@@ -111,7 +111,7 @@ public class PolicyService {
 				policy.setPolicyId(policyDomain.getPolicyId());
 				policy.setPolicyType(policyDomain.getPolicyType());
 				policy.setAccountId(policyDomain.getAccountId());
-				policy.setAccountName(policyDomain.getAccountName());
+				policy.setAccountName(account.getAccountName());
 				policy.setBusinessType(policyDomain.getBusinessType());
 				policy.setSubmissionId(policyDomain.getSubmissionId());
 				policies.add(policy);

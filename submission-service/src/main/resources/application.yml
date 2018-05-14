@@ -55,11 +55,16 @@ spring:
 #          zkNodes: localhost
 #          defaultZkPort: 2181
 #          defaultBrokerPort: 9092                
+#Eureka Server  
 eureka:
   client:
     service-url:
-      defaultZone: https://discovery-service.apps.apbg.apcf.io/eureka/
+      defaultZone: https://discovery-service.apps.apbg.apcf.io/eureka/      
       register-with-eureka: true
+#  instance:
+#    hostname: https://discovery-service.apps.apbg.apcf.io/eureka/
+#    non-secure-port: 80
+#    secure-port-enabled: false
 ---      
 server:
   port: 8081
