@@ -50,8 +50,8 @@ dependencies {
 	//compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
 	compile('org.springframework:spring-oxm:5.0.5.RELEASE')
 	compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
-	//compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard')
-	compile('org.springframework.cloud:spring-cloud-starter-netflix-turbine')
+	compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard')
+	//compile('org.springframework.cloud:spring-cloud-starter-netflix-turbine')
 	
 }
 
