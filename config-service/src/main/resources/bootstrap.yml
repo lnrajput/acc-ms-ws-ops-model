@@ -1,3 +1,4 @@
+
 server:
   port: 8888
 #Usecase-1
@@ -38,9 +39,12 @@ spring:
       name: user
       password: '{cipher}60c2d0867d40bad773764f53841f2ca5c39b4bb194f07c266ca9d086e7b4d0fa'
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: 10.0.4.45
+#    port: 5672
+#    username: guest
+    password: usd684tr5oq9spndrah9ghalki
+    addresses: https://42e5404b-125c-4358-aa70-2aa113b71676:usd684tr5oq9spndrah9ghalki@pivotal-rabbitmq.sys.apbg.apcf.io/api/
+  application:
+    name: ${vcap.application.name:config-service}
 encrypt:
-  key: asdfsdf
+  key: asdfsdf  

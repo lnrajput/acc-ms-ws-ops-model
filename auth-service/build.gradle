@@ -26,29 +26,25 @@ repositories {
 
 
 ext {
-	springCloudVersion = 'Finchley.M9'
+	springCloudVersion = 'Finchley.RC1'
 }
 
 dependencies {
-	
+	//compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.cloud:spring-cloud-starter-sleuth')
-	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compileOnly('org.projectlombok:lombok:1.16.20')
-	compile('mysql:mysql-connector-java')
-	compile('com.codepoetics:protonpack:1.13')
-	//compile('org.springframework.cloud:spring-cloud-stream')
-	compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
-	compile('org.springframework.cloud:spring-cloud-starter-stream-kafka')
-	//compile('org.springframework.cloud:spring-cloud-stream-reactive')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	//testCompile('org.springframework.cloud:spring-cloud-stream-test-support')
+	//compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+	compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+	compile('org.springframework.cloud:spring-cloud-starter-security')
+	compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+	//compile('org.springframework.cloud:spring-cloud-starter-zipkin')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compileOnly('org.projectlombok:lombok:1.16.20')
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
-	compile('org.springframework.cloud:spring-cloud-starter-oauth2')
-	compile('org.springframework.cloud:spring-cloud-starter-security')	
+	//compile('javax.xml.bind:jaxb-api:2.3.0')
+	//compile('org.springframework.security:spring-security-jwt')
+	
 }
 
 dependencyManagement {

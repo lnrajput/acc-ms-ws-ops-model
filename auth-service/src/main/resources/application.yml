@@ -1,0 +1,39 @@
+    
+server:
+  port: 9999
+  servlet:
+    context-path: /uaa
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka/
+      register-with-eureka: true
+      
+spring:
+  security:
+    user:
+      name: lnrajput
+      password: pass
+      roles:
+      - USER
+      
+#Oauth Details
+security:
+  oauth2:
+    client:
+      client-id: account-mgmt-edge-service
+      client-secret: account-mgmt-edge-secret
+      authorized-grant-types:
+      - password
+      - client_credentials
+      - authorization_code
+      - refresh_token   
+      scope:
+      - read
+      - write
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+           

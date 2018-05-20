@@ -1,3 +1,4 @@
+---
 server:
   port: 8081
 #setting logging levels
@@ -12,7 +13,7 @@ logging:
 spring:
   profiles:
     active:
-    - ${SPRING_PROFILES_ACTIVE}
+    - ${SPRING_PROFILES_ACTIVE:cloud}
   datasource:
     url: jdbc:mysql://10.0.4.22:3306/cf_ec2ff8d3_af1a_4e09_b245_f2cecfde0b17?user=5jXFlX4MpUAGeb2f&password=CBja3hRTbj1qpuHl
     username: 5jXFlX4MpUAGeb2f
@@ -65,6 +66,11 @@ eureka:
 #    hostname: https://discovery-service.apps.apbg.apcf.io/eureka/
 #    non-secure-port: 80
 #    secure-port-enabled: false
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://auth-server.apps.apbg.apcf.io/uaa/user
 ---      
 server:
   port: 8081
@@ -80,7 +86,7 @@ logging:
 spring:
   profiles:
     active:
-    - local
+    - ${SPRING_PROFILES_ACTIVE:local}
   datasource:
     url: jdbc:mysql://localhost:3306/account_mgmt?useSSL=false
     username: root
@@ -92,39 +98,46 @@ spring:
   zipkin:
     base-url: http://localhost:9411/
 
-  cloud:
-    stream:
-      bindings:
-        output:
-          destination: submission-topic
-          binder: rabbitmq-binder
-          content-type: application/json
-      binders:
-        rabbitmq-binder:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
-                virtual-host: /
-                
 #  cloud:
 #    stream:
 #      bindings:
 #        output:
 #          destination: submission-topic
-#      kafka:
-#        binder:
-#          brokers: localhost
-#          zkNodes: localhost
-#          defaultZkPort: 2181
-#          defaultBrokerPort: 9092                
+#          binder: rabbitmq-binder
+#          content-type: application/json
+#      binders:
+#        rabbitmq-binder:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
+                
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: submission-topic
+      kafka:
+        binder:
+          brokers: 52.201.157.191
+          zkNodes: 52.201.157.191
+          defaultZkPort: 2181
+          defaultBrokerPort: 9092 
+      binders:
+        kafka:
+          default-candidate: true               
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8765/eureka/
-      register-with-eureka: true            
-            
+      register-with-eureka: true
+      
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:9999/uaa/user       
