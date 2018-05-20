@@ -90,4 +90,9 @@ spring:
     enabled: true
     sampler:
       probability: 1.0
-      
+
+# User Info 
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:9999/uaa/user
