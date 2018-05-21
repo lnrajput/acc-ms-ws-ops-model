@@ -98,39 +98,39 @@ spring:
   zipkin:
     base-url: http://localhost:9411/
 
-#  cloud:
-#    stream:
-#      bindings:
-#        output:
-#          destination: submission-topic
-#          binder: rabbitmq-binder
-#          content-type: application/json
-#      binders:
-#        rabbitmq-binder:
-#          type: rabbit
-#          environment:
-#            spring:
-#              rabbitmq:
-#                host: localhost
-#                port: 5672
-#                username: guest
-#                password: guest
-#                virtual-host: /
-                
   cloud:
     stream:
       bindings:
         output:
           destination: submission-topic
-      kafka:
-        binder:
-          brokers: 52.201.157.191
-          zkNodes: 52.201.157.191
-          defaultZkPort: 2181
-          defaultBrokerPort: 9092 
+          binder: rabbitmq-binder
+          content-type: application/json
       binders:
-        kafka:
-          default-candidate: true               
+        rabbitmq-binder:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+      default-binder: rabbit           
+#  cloud:
+#    stream:
+#      bindings:
+#        output:
+#          destination: submission-topic
+#      kafka:
+#        binder:
+#          brokers: 52.201.157.191
+#          zkNodes: 52.201.157.191
+#          defaultZkPort: 2181
+#          defaultBrokerPort: 9092 
+#      binders:
+#        kafka:
+#          default-candidate: true               
 eureka:
   client:
     service-url:

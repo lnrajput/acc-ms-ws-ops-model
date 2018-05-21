@@ -10,6 +10,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @EnableHystrixDashboard
+//@EnableOAuth2Sso
 public class PolicyServiceApplication {
 
 	public static void main(String[] args) {

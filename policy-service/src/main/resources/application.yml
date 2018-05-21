@@ -20,6 +20,13 @@ spring:
       probability: 1.0
   zipkin:
     base-url: http://localhost:9411/
+  security:
+    user:
+      name: policyuser
+      password: policypass
+      roles:
+      - USER        
+    
     
 eureka:
   client:
@@ -32,5 +39,59 @@ management:
     web:
       exposure:
         include: '*'
-              
-    
+        
+      
+# GITLAB settings
+      
+#security:
+#  oauth2:
+#    client:
+#      client-id: a04dc86986d22278f18936bad12854e5c092c5744aa5b55f86223d371ab92c6e
+#      client-secret: e63181cec1804c9592b1cd3d4537fe959a26c73c4bb91ac182f9f5df7f60d3e0
+#      access-token-uri: http://gitlab.apbg.apcf.io/oauth/token
+#      user-authorization-uri: http://gitlab.apbg.apcf.io/oauth/authorize
+#      client-authentication-scheme: form
+#    resource:
+#      user-info-uri: http://gitlab.apbg.apcf.io/api/v4/user
+#      prefer-token-info: false
+
+# GITHUB Settings
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: 075b7bdc0c4e3e7bb07b
+#      client-secret: 6501ff7c0fce1b575f019487dfcd587306ab662b
+#      access-token-uri: https://github.com/login/oauth/access_token
+#      user-authorization-uri: https://github.com/login/oauth/authorize
+#      client-authentication-scheme: form
+#      registered-redirect-uri:
+#      - https://github.com/login/oauth2/code/github
+#    resource:
+#      user-info-uri: https://api.github.com/user
+
+# Our own Auth Server settings
+#security:
+#  oauth2:
+#    client:
+#      client-id: account-mgmt-edge-service
+#      client-secret: account-mgmt-edge-secret
+#      access-token-uri: http://localhost:9999/uaa/oauth/token
+#      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
+#      client-authentication-scheme: form      
+#    resource:
+#      user-info-uri: http://localhost:9999/uaa/user
+#      prefer-token-info: false   
+
+accountmgmt: 
+  oauth2:
+    client:
+      clientId: account-mgmt-edge-service
+      clientSecret: account-mgmt-edge-secret
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+      userInfoUri: http://localhost:9999/uaa/user
+      username: lnrajput
+      password: pass
+      grantType: password
+      tokenName: access_token      

@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.acc.cloud.ms.model.Account;
 import com.acc.cloud.ms.model.SubmissionDetails;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +21,10 @@ public class AccountMgmtServiceRestClient {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@HystrixCommand(fallbackMethod = "defaultAccountDetailsWithSubmissions")
+//	@Autowired
+//	private OAuth2RestTemplate restTemplate;
+	
+//	@HystrixCommand(fallbackMethod = "defaultAccountDetailsWithSubmissions")
 	public Account getAccountDetailsWithSubmissions(Long accountId) {
 		String baseUrl = "http://localhost:8087/api/account-service/accounts/"+accountId+"/submissions";
 		log.debug("Discovery base url::"+ baseUrl);		

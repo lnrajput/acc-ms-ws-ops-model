@@ -1,3 +1,4 @@
+---
 server:
   port: 8082
 #setting logging levels
@@ -12,7 +13,7 @@ logging:
 spring:
   profiles:
     active:
-    - ${SPRING_PROFILES_ACTIVE}
+    - ${SPRING_PROFILES_ACTIVE:cloud}
   datasource:
     url: jdbc:mysql://10.0.4.22:3306/cf_ec2ff8d3_af1a_4e09_b245_f2cecfde0b17?user=5jXFlX4MpUAGeb2f&password=CBja3hRTbj1qpuHl
     username: 5jXFlX4MpUAGeb2f
@@ -21,43 +22,43 @@ spring:
     enabled: true
     sampler:
       probability: 1.0
-  zipkin:
-    base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
-    
-  rabbitmq:
-    host: 10.0.4.45
-    password: usd684tr5oq9spndrah9ghalki
-    addresses: https://42e5404b-125c-4358-aa70-2aa113b71676:usd684tr5oq9spndrah9ghalki@pivotal-rabbitmq.sys.apbg.apcf.io/api/
-  cloud:
-    stream:
-      bindings:
-        input:
-          destination: submission-topic
-          group: submission-group
-          binder: rabbitmq-binder
-          content-type: application/json
-      binders:
-        rabbitmq-binder:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: 10.0.4.45
-                password: usd684tr5oq9spndrah9ghalki
-                virtual-host: /
-
+#  zipkin:
+#    base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
+#    
+#  rabbitmq:
+#    host: 10.0.4.45
+#    password: usd684tr5oq9spndrah9ghalki
+#    addresses: https://42e5404b-125c-4358-aa70-2aa113b71676:usd684tr5oq9spndrah9ghalki@pivotal-rabbitmq.sys.apbg.apcf.io/api/
 #  cloud:
 #    stream:
 #      bindings:
 #        input:
 #          destination: submission-topic
 #          group: submission-group
-#      kafka:
-#        binder:
-#          brokers: localhost
-#          zkNodes: localhost
-#          defaultZkPort: 2181
-#          defaultBrokerPort: 9092
+#          binder: rabbitmq-binder
+#          content-type: application/json
+#      binders:
+#        rabbitmq-binder:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: 10.0.4.45
+#                password: usd684tr5oq9spndrah9ghalki
+#                virtual-host: /
+
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: submission-topic
+          group: submission-group
+      kafka:
+        binder:
+          brokers: 52.201.157.191
+          zkNodes: 52.201.157.191
+          defaultZkPort: 2181
+          defaultBrokerPort: 9092
                 
              
 eureka:
@@ -120,7 +121,7 @@ logging:
 spring:
   profiles:
     active:
-    - local
+    - ${SPRING_PROFILES_ACTIVE:local}
   datasource:
     url: jdbc:mysql://localhost:3306/account_mgmt?useSSL=false
     username: root
@@ -130,8 +131,7 @@ spring:
     sampler:
       probability: 1.0
   zipkin:
-    base-url: http://localhost:9411/
-    
+    base-url: http://localhost:9411/    
   rabbitmq:
     host: localhost
     port: 5672
@@ -156,7 +156,7 @@ spring:
                 username: guest
                 password: guest
                 virtual-host: /
-
+      default-binder: rabbit
 #  cloud:
 #    stream:
 #      bindings:
@@ -165,12 +165,15 @@ spring:
 #          group: submission-group
 #      kafka:
 #        binder:
-#          brokers: localhost
-#          zkNodes: localhost
+#          brokers: 52.201.157.191
+#          zkNodes: 52.201.157.191
 #          defaultZkPort: 2181
 #          defaultBrokerPort: 9092
+#      binders:
+#        kafka:
+#          default-candidate: true
+
                 
-             
 eureka:
   client:
     service-url:
@@ -208,11 +211,8 @@ ribbon:
 feign:
   hystrix:
     enabled: true
-
-# To set thread isolation to SEMAPHORE
-#hystrix:
-#  command:
-#    default:
-#      execution:
-#        isolation:
-#          strategy: SEMAPHORE
+    
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:9999/uaa/user 
