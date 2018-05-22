@@ -22,8 +22,8 @@ spring:
     enabled: true
     sampler:
       probability: 1.0
-#  zipkin:
-#    base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
+  zipkin:
+    base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
 #    
 #  rabbitmq:
 #    host: 10.0.4.45
@@ -98,14 +98,6 @@ ribbon:
 feign:
   hystrix:
     enabled: true
-
-# To set thread isolation to SEMAPHORE
-#hystrix:
-#  command:
-#    default:
-#      execution:
-#        isolation:
-#          strategy: SEMAPHORE
 ---
 server:
   port: 8082
@@ -131,48 +123,53 @@ spring:
     sampler:
       probability: 1.0
   zipkin:
-    base-url: http://localhost:9411/    
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-  cloud:
-    stream:
-      bindings:
-        input:
-          destination: submission-topic
-          group: submission-group
-          binder: rabbitmq-binder
-          content-type: application/json
-      binders:
-        rabbitmq-binder:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
-                virtual-host: /
-      default-binder: rabbit
+    base-url: http://localhost:9411/
+    
+# AMQP settings
+        
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
 #  cloud:
 #    stream:
 #      bindings:
 #        input:
 #          destination: submission-topic
 #          group: submission-group
-#      kafka:
-#        binder:
-#          brokers: 52.201.157.191
-#          zkNodes: 52.201.157.191
-#          defaultZkPort: 2181
-#          defaultBrokerPort: 9092
+#          binder: rabbitmq-binder
+#          content-type: application/json
 #      binders:
-#        kafka:
-#          default-candidate: true
-
+#        rabbitmq-binder:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
+#      default-binder: rabbit
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: submission-topic
+          group: submission-group
+      kafka:
+        binder:
+          brokers: 52.201.157.191
+          zkNodes: 52.201.157.191        
+#          brokers: localhost
+#          zkNodes: localhost
+          defaultZkPort: 2181
+          defaultBrokerPort: 9092 
+          
+      binders:
+        kafka:
+          default-candidate: true
                 
 eureka:
   client:

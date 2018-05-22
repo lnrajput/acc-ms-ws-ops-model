@@ -9,7 +9,6 @@ logging:
     com.acc.cloud.ms: DEBUG
     
 #Eureka Server
-
 spring:
   profiles:
     active:
@@ -25,47 +24,46 @@ spring:
   zipkin:
     base-url: https://distributed-tracing-server.apps.apbg.apcf.io/
 
-  cloud:
-    stream:
-      bindings:
-        output:
-          destination: submission-topic
-          binder: rabbitmq-binder
-          content-type: application/json
-      binders:
-        rabbitmq-binder:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: 10.0.4.45
-#                port: 5672
-#                username: guest
-                password: ub5pj4n3c7kfgodd50icj6vnm1
-                virtual-host: /
-                
-                
 #  cloud:
 #    stream:
 #      bindings:
 #        output:
 #          destination: submission-topic
-#      kafka:
-#        binder:
-#          brokers: localhost
-#          zkNodes: localhost
-#          defaultZkPort: 2181
-#          defaultBrokerPort: 9092                
+#          binder: rabbitmq-binder
+#          content-type: application/json
+#      binders:
+#        rabbitmq-binder:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: 10.0.4.45
+##                port: 5672
+##                username: guest
+#                password: ub5pj4n3c7kfgodd50icj6vnm1
+#                virtual-host: /
+                
+                
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: submission-topic
+      kafka:
+        binder:
+          brokers: 52.201.157.191
+          zkNodes: 52.201.157.191
+          defaultZkPort: 2181
+          defaultBrokerPort: 9092  
+      binders:
+        kafka:
+          default-candidate: true                             
 #Eureka Server  
 eureka:
   client:
     service-url:
       defaultZone: https://discovery-service.apps.apbg.apcf.io/eureka/      
       register-with-eureka: true
-#  instance:
-#    hostname: https://discovery-service.apps.apbg.apcf.io/eureka/
-#    non-secure-port: 80
-#    secure-port-enabled: false
 
 security:
   oauth2:
@@ -98,39 +96,41 @@ spring:
   zipkin:
     base-url: http://localhost:9411/
 
-  cloud:
-    stream:
-      bindings:
-        output:
-          destination: submission-topic
-          binder: rabbitmq-binder
-          content-type: application/json
-      binders:
-        rabbitmq-binder:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
-                virtual-host: /
-      default-binder: rabbit           
 #  cloud:
 #    stream:
 #      bindings:
 #        output:
 #          destination: submission-topic
-#      kafka:
-#        binder:
-#          brokers: 52.201.157.191
-#          zkNodes: 52.201.157.191
-#          defaultZkPort: 2181
-#          defaultBrokerPort: 9092 
+#          binder: rabbitmq-binder
+#          content-type: application/json
 #      binders:
-#        kafka:
-#          default-candidate: true               
+#        rabbitmq-binder:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
+#      default-binder: rabbit           
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: submission-topic
+      kafka:
+        binder:
+          brokers: 52.201.157.191
+          zkNodes: 52.201.157.191        
+#          brokers: localhost
+#          zkNodes: localhost
+          defaultZkPort: 2181
+          defaultBrokerPort: 9092 
+      binders:
+        kafka:
+          default-candidate: true               
 eureka:
   client:
     service-url:
