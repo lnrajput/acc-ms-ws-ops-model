@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: submission-producer
+#  cloud:
+#    config:
+#      profile: default
+#      uri: http://localhost:8888
+#      name: submission-producer
+#      enabled: true
+#      username: user
+#      password: '{cipher}60c2d0867d40bad773764f53841f2ca5c39b4bb194f07c266ca9d086e7b4d0fa'
+#encrypt:
+#  key: asdfsdf
+  cloud:
+    config:
+      enabled: true
+      
